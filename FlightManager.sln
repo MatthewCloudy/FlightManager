@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightManager.Domain", "Fli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightManager.DataAccess", "FlightManager.DataAccess\FlightManager.DataAccess.csproj", "{6A05B4B9-6BB7-4147-BBC9-CFAA58A8D94C}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "flightmanager.view", "FlightManager.View\flightmanager.view.esproj", "{9CAA2347-FB82-47B9-90FF-93540F831C40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,12 @@ Global
 		{6A05B4B9-6BB7-4147-BBC9-CFAA58A8D94C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A05B4B9-6BB7-4147-BBC9-CFAA58A8D94C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A05B4B9-6BB7-4147-BBC9-CFAA58A8D94C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CAA2347-FB82-47B9-90FF-93540F831C40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CAA2347-FB82-47B9-90FF-93540F831C40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CAA2347-FB82-47B9-90FF-93540F831C40}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9CAA2347-FB82-47B9-90FF-93540F831C40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CAA2347-FB82-47B9-90FF-93540F831C40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CAA2347-FB82-47B9-90FF-93540F831C40}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

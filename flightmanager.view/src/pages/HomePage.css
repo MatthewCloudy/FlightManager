@@ -1,0 +1,23 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.container {
+    background-image: url('../assets/plane2.jpg'); /* Œcie¿ka do Twojego obrazu */
+    background-size: cover; /* Obraz zostanie rozci¹gniêty, aby wype³niæ ca³e t³o */
+    background-position: center; /* Obraz bêdzie wyœrodkowany */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0;
+}
+
+.form-container {
+    background-color: rgba(245, 193, 171, 0.4); /* Pó³przezroczyste bia³e t³o */
+    padding: 20px;
+    border-radius: 8px;
+}

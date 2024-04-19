@@ -1,44 +1,77 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
+using FlightManager.DataAccess.Repositories;
+using FlightManager.DataAccess.Abstractions;
 using FlightManager.Domain.Models;
 
 namespace FlightManager.Controllers
 {
+  
     [ApiController]
-    [Route("[controller]")]
-    public class FlightController : ControllerBase
+    [Route("api/[controller]")]
+    public class FlightsController : ControllerBase
     {
-        //private static readonly string[] Summaries = new[]
-        //{
-        //    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        //};
+        private readonly IFlightRepository _flightRepository;
 
-
-        public FlightController()
+        public FlightsController(IFlightRepository flightRepository)
         {
-            
+            _flightRepository = flightRepository;
         }
 
-        //[HttpGet]
-        //public ActionResult<IEnumerable<Flight>> Get()
-        //{
-        //    //try
-        //    //{
-        //    //    var connections = _unitOfWork.Connection.GetAll(c => (c.From.Id == request.StartStationId &&
-        //    //        c.Destination.Id == request.EndStationId &&
-        //    //        c.DepartureTime >= request.DepartureTime));
+        [HttpGet]
+        public IActionResult GetAllFlights()
+        {
+            try
+            {
+                var flights = _flightRepository.GetAll();
+                return Ok(flights);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
 
-        //    //    if (connections.Count() == 0)
-        //    //    {
-        //    //        return NotFound();
-        //    //    }
+        [HttpPost]
+        public IActionResult AddFlight([FromBody] Flight flight)
+        {
+            try
+            {
+                _flightRepository.Add(flight);
+                return Ok("Flight added successfully");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
 
-        //    //    return Ok(connections);
-        //    //}
-        //    //catch (Exception ex)
-        //    //{
-        //    //    return BadRequest(ex.Message);
-        //    //}
-        //}
+        [HttpDelete("{id}")]
+        public IActionResult DeleteFlight([FromRoute] int id)
+        {
+            try
+            {
+                _flightRepository.Delete(id);
+                return Ok("Flight deleted successfully");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult EditFlight([FromRoute] int id, [FromBody] Flight flight)
+        {
+            try
+            {
+                _flightRepository.Edit(id, flight);
+                return Ok("Flight edited successfully");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
     }
 }
+

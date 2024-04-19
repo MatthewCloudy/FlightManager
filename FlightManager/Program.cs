@@ -1,4 +1,7 @@
+using FlightManager.DataAccess.Abstractions;
 using FlightManager.DataAccess.Data;
+using FlightManager.DataAccess.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +16,14 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddScoped<IFlightRepository, FlightRepository>();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.Authority = "https://dev-gj7hu2jxjjewofk8.us.auth0.com/";
+        options.Audience = "tazJPS9HIKBVN10dLEeSFbP2JHD7eQqm";
+    });
 
 var app = builder.Build();
 
