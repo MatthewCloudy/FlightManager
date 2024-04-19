@@ -1,26 +1,34 @@
-import { Select, MenuItem, FormControl, InputLabel, Box, TextField, Container, Typography } from '@mui/material';
-//import { useStore } from '../../stores/SearchFormStore';
-//import { useNavigate } from 'react-router-dom';
-//import { LocalizationProvider } from '@mui/x-date-pickers';
-//import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-//import { DateTimePicker, DatePicker } from '@mui/x-date-pickers';
-//import { useState, useEffect } from 'react';
+import { Select, MenuItem, FormControl, InputLabel, Box, TextField, Container, Typography, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
 import './HomePage.css';
 
 const SearchForm = () => {
 
-    //const baseUrl = "https://kolejna-podroz-test.azurewebsites.net/";
-    //const baseUrl = "https://localhost:60016/";
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
+    const { isAuthenticated } = useAuth0();
 
+    const handleClick = () => {
+        navigate('/panel');
+    };
 
+    if (isAuthenticated)
+    {
+        return (
+            <div className='container'>
 
+                <Container className='form-container' maxWidth="sm">
+                    <Button onClick={handleClick }>Manager panel</Button>
+                </Container>
+            </div>
+        );
+    }
 
     return (
         <div className='container'>
 
             <Container className='form-container' maxWidth="sm">
-                <Typography>Sample tekst</Typography>
+                <Typography>Log in to move to manager panel</Typography>
             </Container>
         </div>
     );

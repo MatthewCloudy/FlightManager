@@ -2,6 +2,7 @@
 using FlightManager.DataAccess.Repositories;
 using FlightManager.DataAccess.Abstractions;
 using FlightManager.Domain.Models;
+using FlightManager.Api.Models;
 
 namespace FlightManager.Controllers
 {
@@ -32,11 +33,11 @@ namespace FlightManager.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddFlight([FromBody] Flight flight)
+        public IActionResult AddFlight([FromBody] FlightPostRequest flightRequest)
         {
             try
             {
-                _flightRepository.Add(flight);
+                //_flightRepository.Add(flightRequest);
                 return Ok("Flight added successfully");
             }
             catch (Exception ex)
