@@ -10,21 +10,21 @@ using System.Threading.Tasks;
 
 namespace FlightManager.DataAccess.Repositories
 {
-    public class AirplaneRepository : IAirplaneRepository
+    public class AirportRepository : IAirportRepository
     {
         private readonly DataContext _context;
-        public AirplaneRepository(DataContext context)
+        public AirportRepository(DataContext context)
         {
             _context = context;
         }
-        public ICollection<Airplane> GetAll()
+        public ICollection<Airport> GetAll()
         {
-            return _context.Airplanes.ToList();
+            return _context.Airports.ToList();
         }
 
-        public Airplane? GetByName(string name)
+        public Airport? GetByName(string name)
         {
-            return _context.Airplanes.FirstOrDefault(a => a.Name == name);
+            return _context.Airports.FirstOrDefault(a => a.Name == name);
         }
     }
 }

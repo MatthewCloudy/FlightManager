@@ -15,6 +15,28 @@ namespace FlightManager.Domain.Models
         public Airport DepartureCity {  get; set; }
         public Airport ArrivalCity {  get; set; }
         public Airplane Airplane { get; set; }
+        public Flight()
+        {
+            
+        }
+        public Flight(int Id, string Name, DateTime DepartureTime, Airport DepartureCity, Airport ArrivalCity, Airplane Airplane)
+        {
+            this.Id = Id;
+            this.Name = Name;
+            this.DepartureTime = DepartureTime;
+            this.DepartureCity = DepartureCity;
+            this.ArrivalCity = ArrivalCity;
+            this.Airplane = Airplane;
+        }
+
+        public Flight(string Name, DateTime DepartureTime, Airport DepartureCity, Airport ArrivalCity, Airplane Airplane)
+        {
+            this.Name = Name;
+            this.DepartureTime = DepartureTime;
+            this.DepartureCity = DepartureCity;
+            this.ArrivalCity = ArrivalCity;
+            this.Airplane = Airplane;
+        }
 
     }
 }

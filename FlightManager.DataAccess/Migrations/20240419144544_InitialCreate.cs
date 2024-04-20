@@ -84,6 +84,38 @@ namespace FlightManager.DataAccess.Migrations
                 name: "IX_Flights_DepartureCityId",
                 table: "Flights",
                 column: "DepartureCityId");
+
+            Seed(migrationBuilder);
+        }
+
+        private void Seed(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.InsertData(
+                table: "Airports",
+                columns: new[] { "Id", "Name"},
+                values: new object[,] { 
+                    { 1, "Warsaw" },
+                    { 2, "Lublin" },
+                    { 3, "Radom" },
+                    { 4, "Wroclaw" },
+                });
+            migrationBuilder.InsertData(
+                table: "Airplanes",
+                columns: new[] { "Id", "Name" },
+                values: new object[,] {
+                                { 1, "Embraer" },
+                                { 2, "Boeing" },
+                                { 3, "Airbus" },
+                                { 4, "Cessna" },
+                });
+            migrationBuilder.InsertData(
+                table: "Flights",
+                columns: new[] { "Id", "Name", "DepartureTime", "DepartureCityId", "ArrivalCityId", "AirplaneId" },
+                values: new object[,] {
+                                { 1, "ABC1", DateTime.Now, 1, 2, 1 },
+                                { 2, "AAA2", DateTime.Now.AddDays(2), 2, 3, 2 },
+                                { 3, "BCD1", DateTime.Now.AddDays(5), 1, 3, 3 },
+                });
         }
 
         /// <inheritdoc />

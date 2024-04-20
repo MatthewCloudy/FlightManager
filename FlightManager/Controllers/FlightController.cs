@@ -3,6 +3,8 @@ using FlightManager.DataAccess.Repositories;
 using FlightManager.DataAccess.Abstractions;
 using FlightManager.Domain.Models;
 using FlightManager.Api.Models;
+using System.Globalization;
+using FlightManager.Api.Services;
 
 namespace FlightManager.Controllers
 {
@@ -12,10 +14,15 @@ namespace FlightManager.Controllers
     public class FlightsController : ControllerBase
     {
         private readonly IFlightRepository _flightRepository;
+        private readonly IAirplaneRepository _airplaneRepository;
+        private readonly IAirportRepository _airportRepository;
 
-        public FlightsController(IFlightRepository flightRepository)
+        public FlightsController(IFlightRepository flightRepository, 
+            IAirplaneRepository airplaneRepository, IAirportRepository airportRepository)
         {
             _flightRepository = flightRepository;
+            _airplaneRepository = airplaneRepository;
+            _airportRepository = airportRepository;
         }
 
         [HttpGet]
@@ -37,7 +44,9 @@ namespace FlightManager.Controllers
         {
             try
             {
-                //_flightRepository.Add(flightRequest);
+                Flight flight = new createFlightPost().Create(_airportRepository, _airplaneRepository, flightRequest);
+                _flightRepository.Add(flight);
+
                 return Ok("Flight added successfully");
             }
             catch (Exception ex)
@@ -60,11 +69,13 @@ namespace FlightManager.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public IActionResult EditFlight([FromRoute] int id, [FromBody] Flight flight)
+        [HttpPatch("{id}")]
+        public IActionResult EditFlight([FromRoute] int id, [FromBody] FlightPostRequest flightRequest)
         {
             try
             {
+                Flight flight = new createFlightPatch().Create(_airportRepository, _airplaneRepository, flightRequest);
+
                 _flightRepository.Edit(id, flight);
                 return Ok("Flight edited successfully");
             }

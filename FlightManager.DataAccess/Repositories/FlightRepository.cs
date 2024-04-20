@@ -40,8 +40,12 @@ namespace FlightManager.DataAccess.Repositories
             {
                 return;
             }
+            existingFlight.DepartureTime = flight.DepartureTime;
+            existingFlight.DepartureCity = flight.DepartureCity;
+            existingFlight.ArrivalCity = flight.ArrivalCity;
+            existingFlight.Airplane = flight.Airplane;
+            existingFlight.Name = flight.Name;
 
-            _context.Entry(existingFlight).CurrentValues.SetValues(flight);
             _context.SaveChanges();
         }
 
@@ -51,6 +55,11 @@ namespace FlightManager.DataAccess.Repositories
                               .Include(f => f.ArrivalCity)
                               .Include(f => f.Airplane)
                               .ToList();
+        }
+
+        public Flight? GetById(int id)
+        {
+            return _context.Flights.FirstOrDefault(a => a.Id == id);
         }
     }
 }

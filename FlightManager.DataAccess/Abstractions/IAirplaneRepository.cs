@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 
 namespace FlightManager.DataAccess.Abstractions
 {
-    public interface IFlightRepository
+    public interface IAirplaneRepository
     {
-        ICollection<Flight> GetAll();
-        Flight? GetById(int id);
-        void Add(Flight flight);
-        void Delete(int id);
-        void Edit(int id, Flight flight);
+        ICollection<Airplane> GetAll();
+        Airplane? GetByName(string name);
     }
 }
